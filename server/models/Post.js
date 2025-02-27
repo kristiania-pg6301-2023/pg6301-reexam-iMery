@@ -8,6 +8,17 @@ const postSchema = new mongoose.Schema(
     reactions: { type: Object, default: {} },
     userProfilePic: { type: String, default: "" },
     createdAt: { type: Date, default: Date.now },
+<<<<<<< HEAD
+=======
+    comments: [
+      {
+        userId: { type: String, required: true },
+        userName: { type: String, required: true },
+        text: { type: String, required: true },
+        createdAt: { type: Date, default: Date.now },
+      },
+    ],
+>>>>>>> master
   },
   { timestamps: true },
 );

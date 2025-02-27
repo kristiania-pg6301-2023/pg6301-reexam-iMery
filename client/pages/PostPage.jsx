@@ -14,6 +14,10 @@ function PostPage() {
   const [editedContent, setEditedContent] = useState("");
   const [selectedReactions, setSelectedReactions] = useState(null);
   const [showReactionsModal, setShowReactionsModal] = useState(false);
+  const [showCommentModal, setShowCommentModal] = useState(false);
+  const [selectedPost, setSelectedPost] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [commentText, setCommentText] = useState("");
 
   //Get user from local storage
   useEffect(() => {
@@ -148,6 +152,69 @@ function PostPage() {
       .catch(console.error);
   };
 
+  // Fetch comments for a post
+  const handleShowComments = async (post) => {
+    setSelectedPost(post);
+    setShowCommentModal(true);
+
+    try {
+      const response = await fetch(`${API_URL}/posts/${post._id}/comments`);
+      if (!response.ok) throw new Error("Failed to fetch comments");
+      const data = await response.json();
+      setComments(data);
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+    }
+  };
+
+  // Add a comment
+  const handleAddComment = async () => {
+    if (!currentUser) {
+      alert("You must be logged in to add a comment.");
+      return;
+    }
+
+    if (!commentText.trim()) return;
+
+    try {
+      const response = await fetch(
+        `${API_URL}/posts/${selectedPost._id}/comment`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ text: commentText }),
+        },
+      );
+
+      if (!response.ok) throw new Error("Failed to add comment");
+
+      setCommentText("");
+      handleShowComments(selectedPost);
+    } catch (error) {
+      console.error("Error adding comment:", error);
+    }
+  };
+
+  //Delete a comment
+  const handleDeleteComment = async (commentId) => {
+    try {
+      const response = await fetch(
+        `${API_URL}/posts/${selectedPost._id}/comment/${commentId}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        },
+      );
+
+      if (!response.ok) throw new Error("Failed to delete comment");
+
+      handleShowComments(selectedPost);
+    } catch (error) {
+      console.error("Error deleting comment:", error);
+    }
+  };
+
   return (
     <div className="app-container">
       {/* Navbar */}
@@ -200,49 +267,58 @@ function PostPage() {
 
             <p className="post-content">{post.content}</p>
 
-            {/* Emojis */}
-            <div className="reactions">
-              {["👍🏼", "❤️", "😹", "🤪"].map((emoji) => (
-                <button
-                  key={emoji}
-                  className={`reaction-button ${
-                    post.reactions?.[emoji]?.some(
-                      (r) => r.userId === currentUser?.id,
-                    )
-                      ? "selected"
-                      : ""
-                  }`}
-                  onClick={() => handleReactToPost(post._id, emoji)}
-                >
-                  {emoji}
-                </button>
-              ))}
-            </div>
+            <div className="post-footer">
+              {/* Emojis */}
+              <div className="reactions">
+                {["👍🏼", "❤️", "😹", "🤪"].map((emoji) => (
+                  <button
+                    key={emoji}
+                    className={`reaction-button ${
+                      post.reactions?.[emoji]?.some(
+                        (r) => r.userId === currentUser?.id,
+                      )
+                        ? "selected"
+                        : ""
+                    }`}
+                    onClick={() => handleReactToPost(post._id, emoji)}
+                  >
+                    {emoji}
+                  </button>
+                ))}
+              </div>
 
-            {/* Edit and delete buttons only shows if the user made the post */}
-            {currentUser?.id === post.userId && (
+              {/* Edit and delete buttons only show if the user made the post */}
+              {currentUser?.id === post.userId && (
+                <div className="post-actions">
+                  <button
+                    className="edit-button"
+                    onClick={() => handleEditPost(post)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="delete-button"
+                    onClick={() => handleDeletePost(post._id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
+
               <div className="post-actions">
                 <button
-                  className="edit-button"
-                  onClick={() => handleEditPost(post)}
+                  className="see-reactions-button"
+                  onClick={() => handleShowReactions(post._id)}
                 >
-                  Edit
+                  See Reactions
                 </button>
                 <button
-                  className="delete-button"
-                  onClick={() => handleDeletePost(post._id)}
+                  className="comment-button"
+                  onClick={() => handleShowComments(post)}
                 >
-                  Delete
+                  Comments
                 </button>
               </div>
-            )}
-            <div className="post-actions">
-              <button
-                className="see-reactions-button"
-                onClick={() => handleShowReactions(post._id)}
-              >
-                See Reactions
-              </button>
             </div>
           </div>
         ))}
@@ -272,7 +348,7 @@ function PostPage() {
         </div>
       )}
 
-      {/* See Reactions Modal */}
+      {/* Reaction modal */}
       {showReactionsModal && (
         <div className="modal-overlay">
           <div className="modal">
@@ -292,6 +368,55 @@ function PostPage() {
             <button
               className="cancel-button"
               onClick={() => setShowReactionsModal(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Comment modal */}
+      {showCommentModal && (
+        <div className="comment-modal-overlay">
+          <div className="comment-modal">
+            <h2>Comments</h2>
+            <div className="comments-list">
+              {comments.length > 0 ? (
+                comments.map((comment) => (
+                  <div key={comment._id} className="comment-item">
+                    <strong>{comment.userName}:</strong> {comment.text}
+                    {currentUser?.id === comment.userId && (
+                      <button
+                        className="delete-comment"
+                        onClick={() => handleDeleteComment(comment._id)}
+                      >
+                        delete
+                      </button>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <p>No comments yet.</p>
+              )}
+            </div>
+
+            {/* Comment input */}
+            <div className="comment-input-container">
+              <input
+                type="text"
+                placeholder="Write a comment..."
+                value={commentText}
+                onChange={(e) => setCommentText(e.target.value)}
+                className="comment-input"
+              />
+              <button className="add-comment-button" onClick={handleAddComment}>
+                Add
+              </button>
+            </div>
+
+            <button
+              className="cancel-button"
+              onClick={() => setShowCommentModal(false)}
             >
               Close
             </button>
