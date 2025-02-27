@@ -13,7 +13,6 @@ dotenv.config();
 
 const app = express();
 DBconnection();
-const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
@@ -26,12 +25,6 @@ app.use("/api", loginApi);
 //posts
 app.use("/api/posts", postRoutes, commentRoutes);
 app.use(express.static("../client/dist"));
-
-app.use(express.static(path.join(__dirname, "dist"))); 
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
-});
 
 const PORT = process.env.PORT || 8000; 
 app.listen(PORT, () => {
