@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+
+body {
+  background-color: black;
+  color: white;
+  font-family: "Fredoka One", cursive;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-box {
+  background: rgb(30, 30, 30);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.2);
+  text-align: center;
+  width: 40%;
+  transition: 0.3s ease-in-out;
+}
+
+.login-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(255, 105, 180, 0.3);
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: pink;
+  text-shadow: 3px 3px 6px rgba(255, 105, 180, 0.5);
+}
+
+.login-text {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.login-button {
+  display: inline-block;
+  padding: 15px 30px;
+  background: pink;
+  color: rgb(36, 34, 34);
+  text-decoration: none;
+  border-radius: 25px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.2);
+  border: none;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background: #ff69b4;
+  transform: scale(1.05);
+}
+
+.anonymous-button {
+  display: block;
+  margin: 15px auto;
+  padding: 15px 30px;
+  background: pink;
+  color: rgb(36, 34, 34);
+  border-radius: 25px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.2);
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+  font-family: "Fredoka One", cursive;
+}
+
+.anonymous-button:hover {
+  background: #ff99cc;
+  transform: scale(1.05);
+}

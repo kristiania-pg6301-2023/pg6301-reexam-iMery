@@ -1,0 +1,31 @@
+{
+  "name": "social-media-app",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "client": "cd client && npm install && npm start",
+    "server": "cd server && npm install && node server.js",
+    "start": "cd server && npm start",
+    "test": "vitest",
+    "format": "prettier --write .",
+    "postinstall": "npm run install:client && npm run install:server",
+    "install:client": "cd client && npm install --include=dev",
+    "install:server": "cd server && npm install",
+    "build": "npm run build:client",
+    "build:client": "cd client && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "concurrently": "^9.1.2",
+    "express": "^4.21.2",
+    "node": "^23.9.0",
+    "vitest": "^3.0.7"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "prettier": "^3.5.2"
+  }
+}

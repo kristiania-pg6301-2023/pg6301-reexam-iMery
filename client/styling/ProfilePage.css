@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+
+body {
+  background-color: black;
+  color: white;
+  font-family: "Fredoka One", cursive;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar */
+.navbar {
+  background: rgb(20, 20, 20);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.2);
+}
+
+.nav-button {
+  padding: 15px 30px;
+  background: pink;
+  color: rgb(36, 34, 34);
+  text-decoration: none;
+  border-radius: 25px;
+  margin: 0 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.2);
+  border: none;
+  cursor: pointer;
+}
+
+.nav-button:hover {
+  background: #ff69b4;
+  transform: scale(1.05);
+}
+
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.profile-card {
+  background: rgb(30, 30, 30);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+  width: 50%;
+  transition: 0.3s ease-in-out;
+}
+
+.profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(255, 105, 180, 0.3);
+}
+
+.profile-pic-large {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid pink;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.2);
+}
+
+.profile-info {
+  color: white;
+  font-size: 1.2rem;
+}
+
+.profile-info h2 {
+  margin: 0 0 10px;
+  color: pink;
+}
+
+.profile-info p {
+  margin: 5px 0;
+}
+
+.not-logged-in {
+  font-size: 1.5rem;
+  color: pink;
+}
