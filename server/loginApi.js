@@ -65,4 +65,9 @@ router.post("/logout", (req, res) => {
   res.sendStatus(204);
 });
 
+router.get('/callback', (req, res) => {
+  res.send('Callback route is working on backend');
+});
+
+
 export default router;
