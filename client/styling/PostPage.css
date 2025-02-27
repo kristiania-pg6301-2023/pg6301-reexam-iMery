@@ -1,0 +1,277 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+
+body {
+  background-color: black;
+  color: white;
+  font-family: "Fredoka One", cursive;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar */
+.navbar {
+  background: rgb(20, 20, 20);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.2);
+}
+
+.nav-button {
+  padding: 15px 30px;
+  background: pink;
+  color: rgb(36, 34, 34);
+  text-decoration: none;
+  border-radius: 25px;
+  margin: 0 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.2);
+}
+
+.nav-button:hover {
+  background: #ff69b4;
+  transform: scale(1.05);
+}
+
+/* Title */
+.title {
+  font-size: 4rem;
+  margin: 30px 0;
+  color: pink;
+  font-weight: bold;
+  text-shadow: 3px 3px 6px rgba(255, 105, 180, 0.5);
+}
+
+.post-form-container {
+  margin: 40px auto;
+  width: 50%;
+}
+
+.post-form textarea {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2rem;
+  border-radius: 20px;
+  border: 2px solid pink;
+  background-color: rgb(20, 20, 20);
+  color: white;
+  resize: none;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.2);
+  transition: 0.3s;
+}
+
+.post-form textarea:focus {
+  outline: none;
+  border-color: #ff69b4;
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.6);
+}
+
+.post-button {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  background: pink;
+  color: rgb(36, 34, 34);
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.2);
+  margin-top: 15px;
+}
+
+.post-button:hover {
+  background: #ff69b4;
+  transform: scale(1.05);
+}
+
+/* Posts box */
+.posts-container {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.post-container {
+  background: rgb(30, 30, 30);
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 15px;
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.2);
+  transition: 0.3s;
+  position: relative;
+}
+
+.post-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(255, 105, 180, 0.3);
+}
+
+/* Profile pic and name */
+.post-header {
+  display: flex;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+  border: 2px solid pink;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.2);
+}
+
+/* Posts */
+.post-content {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+/* Emoji buttons */
+.reaction-button {
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 15px;
+  font-size: 26px;
+  cursor: pointer;
+  background-color: #ffb6c1;
+  transition: all 0.2s ease-in-out;
+  margin: 0 5px;
+}
+
+.reaction-button:hover {
+  transform: scale(1.1);
+}
+
+.reaction-button.selected {
+  background-color: #ff69b4;
+}
+
+/* Post edit and delete */
+.post-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Delete button */
+.delete-button,
+.edit-button,
+.see-reactions-button {
+  padding: 15px 25px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  background: pink;
+  color: rgb(36, 34, 34);
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.2);
+}
+
+.edit-button:hover,
+.delete-button:hover,
+.see-reactions-button:hover {
+  background: #ff69b4;
+  transform: scale(1.05);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal box */
+.modal {
+  background: rgb(30, 30, 30);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  width: 40%;
+  box-shadow: 0 8px 16px rgba(255, 105, 180, 0.3);
+}
+
+/* Modal title */
+.modal h2 {
+  font-size: 1.8rem;
+  color: pink;
+  margin-bottom: 15px;
+}
+
+/* Edit box */
+.modal textarea {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2rem;
+  border-radius: 20px;
+  border: 2px solid pink;
+  background-color: rgb(20, 20, 20);
+  color: white;
+  resize: none;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.2);
+  transition: 0.3s;
+}
+
+.modal textarea:focus {
+  outline: none;
+  border-color: #ff69b4;
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.6);
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.save-button,
+.cancel-button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.2);
+}
+
+.save-button {
+  background: pink;
+  color: rgb(36, 34, 34);
+}
+
+.cancel-button {
+  background: grey;
+  color: white;
+}
+
+.save-button:hover,
+.cancel-button:hover {
+  background: #ff69b4;
+  transform: scale(1.05);
+}
+
+.reaction-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
