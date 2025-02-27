@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/LoginPage.jsx";
 import Profile from "./pages/ProfilePage.jsx";
-import LoginCallback from "./pages/loginCallback.jsx";
+import LoginCallback from "./pages/LoginCallback.jsx";
 import PostPage from "./pages/PostPage.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
