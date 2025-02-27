@@ -47,9 +47,12 @@ function PostPage() {
       body: JSON.stringify({ content }),
     });
 
+    //Error handling
     if (response.status === 429) {
       const errorData = await response.json();
       alert(errorData.error);
+    } else if (response.status === 401) {
+      alert("You must log in to add a post.");
     } else if (response.ok) {
       setContent("");
       refreshPosts();
@@ -84,6 +87,11 @@ function PostPage() {
         credentials: "include",
         body: JSON.stringify({ emoji }),
       });
+
+      if (response.status === 401) {
+        alert("You must log in to react to posts.");
+        return;
+      }
 
       if (!response.ok) throw new Error("Failed to react to post");
 
