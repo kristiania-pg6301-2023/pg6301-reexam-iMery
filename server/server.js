@@ -6,9 +6,6 @@ import loginApi from "./loginApi.js";
 import { DBconnection } from "./config/Dbconnection.js";
 import postRoutes from "./routes/postRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
-import path from "path";
-import { fileURLToPath } from "url";
-
 
 
 dotenv.config();
@@ -27,18 +24,6 @@ app.use("/api", loginApi);
 //posts
 app.use("/api/posts", postRoutes, commentRoutes);
 app.use(express.static("../client/dist"));
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-
-// Serve static frontend files
-app.use(express.static(path.join(__dirname, "../client/dist"))); 
-
-// 🛑 Fix: Serve `index.html` for all unknown routes, so React Router works
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
-});
 
 const PORT = process.env.PORT || 8000; 
 app.listen(PORT, () => {
