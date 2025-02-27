@@ -26,6 +26,16 @@ app.use("/api", loginApi);
 app.use("/api/posts", postRoutes, commentRoutes);
 app.use(express.static("../client/dist"));
 
+const __dirname = path.resolve(); // Fix for ES modules
+
+// Serve static frontend files
+app.use(express.static(path.join(__dirname, "../client/dist"))); 
+
+// 🛑 Fix: Serve `index.html` for all unknown routes, so React Router works
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
+});
+
 const PORT = process.env.PORT || 8000; 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
