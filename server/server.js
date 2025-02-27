@@ -6,6 +6,8 @@ import loginApi from "./loginApi.js";
 import { DBconnection } from "./config/Dbconnection.js";
 import postRoutes from "./routes/postRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
+import path from "path";
+import { fileURLToPath } from "url";
 
 
 
@@ -26,7 +28,9 @@ app.use("/api", loginApi);
 app.use("/api/posts", postRoutes, commentRoutes);
 app.use(express.static("../client/dist"));
 
-const __dirname = path.resolve(); // Fix for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 // Serve static frontend files
 app.use(express.static(path.join(__dirname, "../client/dist"))); 
