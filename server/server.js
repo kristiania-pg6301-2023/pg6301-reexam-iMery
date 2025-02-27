@@ -17,7 +17,7 @@ DBconnection();
 app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(cors({
-    origin: ["http://localhost:3000", "https://maka-social-media-app-66755f89aed5.herokuapp.com"],
+    origin: ["http://localhost:3000", "https://social-media-app-maka-cda458daeb4b.herokuapp.com"],
     credentials: true
   }));
 //login
