@@ -27,6 +27,9 @@ A **social media app** with authentication and posts, built using **React, Expre
 
 By the end of the exam i noticed that the exam requires 3 type of users! Thats why i only have logging in with openID connect and anonymous users. I also faced some deployment challenges with heroku and it took a lot of time, so i I couldn’t do testing either.
 
+### Github link:
+https://github.com/kristiania-pg6301-2023/pg6301-reexam-iMery
+
 ## Running the project
 
 ### **Option 1: Run Everything Together**
