@@ -1,11 +1,10 @@
-# Social Media App - reexam 
+# Social Media App - reexam
 
 A **social media app** with authentication and posts, built using **React, Express, Node.js, MongoDB, OpenID connect, Heroku**.
 
+## Heroku
 
-## Heroku 
 [![Deploy on Heroku](https://img.shields.io/badge/Heroku-Live_App-430098?style=for-the-badge&logo=heroku&logoColor=white)](https://social-media-app-maka-cda458daeb4b.herokuapp.com)
-
 
 ## Requirements
 
@@ -25,11 +24,13 @@ A **social media app** with authentication and posts, built using **React, Expre
 - [x] Alle feil fra server skal presenteres til bruker på en pen måte, med mulighet for brukeren til å prøve igjen
 
 ### Note
-By the end of the exam i noticed that the exam requires 3 type of users! Thats why i only have logging in with openID connect and anonymous users. I also faced some deployment challenges with heroku and it took a lot of time, so i I couldn’t do testing either. 
+
+By the end of the exam i noticed that the exam requires 3 type of users! Thats why i only have logging in with openID connect and anonymous users. I also faced some deployment challenges with heroku and it took a lot of time, so i I couldn’t do testing either.
 
 ## Running the project
 
 ### **Option 1: Run Everything Together**
+
 ```sh
 # Install all dependencies from the root folder
 npm install
@@ -37,7 +38,7 @@ npm install
 # Start the project runs both frontend and backend
 npm run start
 
-# Or backend and frontend can be run seperatly 
+# Or backend and frontend can be run seperatly
 cd server
 npm install
 npm run dev
@@ -45,3 +46,4 @@ npm run dev
 cd ../client
 npm install
 npm run start
+```

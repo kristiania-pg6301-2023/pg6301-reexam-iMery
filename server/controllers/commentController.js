@@ -77,12 +77,10 @@ export const deleteComment = async (req, res) => {
     );
     await post.save();
 
-    res
-      .status(200)
-      .json({
-        message: "Comment deleted successfully",
-        comments: post.comments,
-      });
+    res.status(200).json({
+      message: "Comment deleted successfully",
+      comments: post.comments,
+    });
   } catch (error) {
     console.error("Error deleting comment:", error);
     res
