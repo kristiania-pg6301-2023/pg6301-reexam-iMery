@@ -5,8 +5,7 @@ import dotenv from "dotenv";
 import loginApi from "./loginApi.js";
 import { DBconnection } from "./config/Dbconnection.js";
 import postRoutes from "./Routes/postRoutes.js";
-import commentRoutes from "./routes/commentRoutes.js";
-
+import commentRoutes from "./Routes/commentRoutes.js";
 
 dotenv.config();
 
